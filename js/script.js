@@ -172,6 +172,8 @@ createApp({
         }
     },
     methods:{
-        
+        clickChat(index){
+            this.view_utent = index;
+        }
     }
 }).mount('#app');

@@ -39,7 +39,7 @@
                         </div>
                         <div class="chats-list">
                             <div class="chat" v-for="utent, index in contacts" :key="index">
-                                <div class="active-avatar">
+                                <div class="active-avatar" @click="clickChat(index)">
                                     <img :src="utent.avatar" alt="utent">
                                     <div class="info-utent ms-1">
                                         <p class="mb-0">{{utent.name}}</p>
@@ -56,7 +56,7 @@
                                 <img :src="contacts[view_utent].avatar" alt="utent">
                                 <div class="info-utent">
                                     <p class="mb-0">{{contacts[view_utent].name}}</p>
-                                    <p class="text-secondary fs-10 mb-0">Ultimo accesso: {{contacts[view_utent].messages[0].date}}</p>
+                                    <p class="text-secondary fs-10 mb-0">Ultimo accesso: {{contacts[view_utent].messages[contacts[view_utent].messages.length-1].date}}</p>
                                 </div>
                             </div>
                             <div class="items">
@@ -68,6 +68,7 @@
                         <div class="text-window p-5">
                             <div class="text-container" :class="utent.status === 'received' ? 'received' : 'sent'" v-for="utent, index in contacts[view_utent].messages" :key="index">
                                 <p class="m-1">{{utent.message}}</p>
+                                <span class="mex-date">{{utent.date}}</span>
                             </div>
                         </div>
                         <div class="input-container">

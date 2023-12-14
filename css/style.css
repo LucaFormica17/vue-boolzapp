@@ -66,6 +66,7 @@ img{
 .active-avatar{
     display: flex;
     margin: 5px;
+    cursor: pointer;
 }
 
 .last-connection{
@@ -119,6 +120,7 @@ img{
     padding: 5px 10px;
     border-radius: 10px;
     margin: 10px 0;
+    position: relative;
 }
 
 .sent{
@@ -128,4 +130,12 @@ img{
 .received{
     background-color: white;
     align-self: self-start;
+}
+
+.mex-date{
+    font-size: 8px;
+    color: grey;
+    position: absolute;
+    bottom: 2px;
+    right: 5px;
 }
