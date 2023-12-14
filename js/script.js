@@ -4,7 +4,8 @@ createApp({
     data(){
         return{
             view_utent: 0,
-            last: '',
+            add_message: '',
+            search: '',
             contacts: [
                 {
                     name: 'Michele',
@@ -171,9 +172,31 @@ createApp({
             
         }
     },
+    
     methods:{
         clickChat(index){
             this.view_utent = index;
+        },
+        sendMessage(){
+            let obj = {
+                date: '',
+                message: this.add_message,
+                status: 'send'
+            }
+            this.contacts[this.view_utent].messages.push(obj);
+                
+            let obj_received = setTimeout(() => {
+                let obj = {
+                    date: '',
+                    message: 'ok',
+                    status: 'received'
+                }
+                
+                this.contacts[this.view_utent].messages.push(obj);
+            }, 1000);
+        },
+        searchChat(){
+            
         }
     }
 }).mount('#app');
