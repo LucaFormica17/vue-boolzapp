@@ -196,7 +196,14 @@ createApp({
             }, 1000);
         },
         searchChat(){
-            
+            this.contacts.forEach(element => {
+                if(element.name.toLowerCase().includes(this.search.toLowerCase())){
+                    element.visible = true;
+                }
+                else{
+                    element.visible = false;
+                }
+            });
         }
     }
 }).mount('#app');

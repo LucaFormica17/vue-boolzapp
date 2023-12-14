@@ -38,7 +38,7 @@
                             <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat" v-model="search" @keyup="searchChat()">
                         </div>
                         <div class="chats-list">
-                            <div class="chat" v-for="utent, index in contacts" :key="index">
+                            <div class="chat" v-show="utent.visible" v-for="utent, index in contacts" :key="index">
                                 <div class="active-avatar" @click="clickChat(index)">
                                     <img :src="utent.avatar" alt="utent">
                                     <div class="info-utent ms-1">
