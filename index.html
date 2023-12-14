@@ -66,7 +66,7 @@
                             </div>
                         </div>
                         <div class="text-window p-5">
-                            <div class="text-container" :class="utent.status === " v-for="utent, index in contacts[view_utent].messages" :key="index">
+                            <div class="text-container" :class="utent.status === 'received' ? 'received' : 'sent'" v-for="utent, index in contacts[view_utent].messages" :key="index">
                                 <p class="m-1">{{utent.message}}</p>
                             </div>
                         </div>
