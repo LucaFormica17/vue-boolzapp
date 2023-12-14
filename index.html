@@ -10,7 +10,74 @@
     </head>
     <body>
         <div id="app">
-            
+            <main>
+                <div class="dash-container">
+                    <div class="list-container">
+                        <div class="user">
+                            <div class="avatar-io">
+                                <img src="./img/avatar_io.jpg" alt="avatar_io">
+                                <span>Sofia</span>
+                            </div>
+                            <div class="items">
+                                <i class="fa-solid fa-circle-notch"></i>
+                                <i class="fa-solid fa-message"></i>
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </div>
+                        </div>
+                        <div class="notification">
+                            <div class="bell-container">
+                                <i class="fa-solid fa-bell-slash" style="color: rgba(142,218,252,255);"></i>
+                            </div>
+                            <div class="text-notification">
+                                <p class="mb-0">Ricevi notifiche di nuovi messaggi</p>
+                                <p class="text-secondary fs-10 text-decoration-underline mb-0">Attiva notifiche desktop</p>
+                            </div>
+                        </div>
+                        <div class="input-group mb-0 p-1">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
+                            <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat">
+                        </div>
+                        <div class="chats-list">
+                            <div class="chat" v-for="utent, index in contacts" :key="index">
+                                <div class="active-avatar">
+                                    <img :src="utent.avatar" alt="utent">
+                                    <div class="info-utent ms-1">
+                                        <p class="mb-0">{{utent.name}}</p>
+                                        <p class="text-secondary fs-10 mb-0">{{utent.messages[0].message}}</p>
+                                    </div>
+                                </div>
+                                <p class="text-secondary fs-10">{{utent.messages[0].date}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-container">
+                        <div class="active-utent">
+                            <div class="active-avatar">
+                                <img :src="contacts[view_utent].avatar" alt="utent">
+                                <div class="info-utent">
+                                    <p class="mb-0">{{contacts[view_utent].name}}</p>
+                                    <p class="text-secondary fs-10 mb-0">Ultimo accesso: {{contacts[view_utent].messages[0].date}}</p>
+                                </div>
+                            </div>
+                            <div class="items">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <i class="fa-solid fa-paperclip"></i>
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </div>
+                        </div>
+                        <div class="text-window p-5">
+                            <div class="text-container" :class="utent.status === " v-for="utent, index in contacts[view_utent].messages" :key="index">
+                                <p class="m-1">{{utent.message}}</p>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <i class="fa-regular fa-face-smile"></i>
+                            <input type="text" class="form-control" placeholder="Send a message">
+                            <i class="fa-solid fa-microphone"></i>
+                        </div>
+                    </div>
+                </div>
+            </main>
         </div>
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
         <script src="./js/script.js" type="text/javascript"></script>

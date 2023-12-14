@@ -3,3 +3,108 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+main{
+    background-image: linear-gradient(to bottom, rgba(0,150,136,255) 15vh, rgba(217,219,212,255) 15vh) ;
+    height: 100vh;
+    padding: 20px;
+}
+
+img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.fs-10{
+    font-size: 10px;
+}
+
+.dash-container{
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: calc(100vh - 40px); 
+    background-color: white;
+}
+
+.list-container{
+    width: 40%;
+    
+}
+
+.chat-container{
+    width: 60%;
+    background-image: url('../img/mine.jpg');
+    position: relative;
+}
+
+.user, .active-utent{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(234,234,234,255);
+}
+
+.user{
+    border-right: 1px solid lightgray;
+}
+
+.avatar-io{
+    margin: 5px;
+}
+
+.items{
+    padding-right: 5px;
+}
+
+.items > i{
+    color: gray;
+    font-size: 20px;
+    margin: 10px;
+}
+
+.active-avatar{
+    display: flex;
+    margin: 5px;
+}
+
+.last-connection{
+    color: grey;
+    font-size: 10px;
+}
+
+.notification{
+    background-color: rgba(142,218,252,255);
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.bell-container{
+    background-color: white;
+    padding: 10px;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+
+.chat{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 15px;
+    border-bottom: 1px solid rgb(239, 238, 238);
+}
+
+.input-container{
+    width: 100%;
+    background-color: rgba(234,234,234,255);
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    position: absolute;
+    bottom: 0;
+}
+
+.input-container > i{
+    margin: 0 20px;
+}
