@@ -29,13 +29,23 @@ img{
 }
 
 .list-container{
-    width: 40%;
+    width: 30%;
 }
 
 .chat-container{
-    width: 60%;
+    width: 70%;
     background-image: url('../img/mine.jpg');
-    position: relative;
+    position: relative;   
+}
+
+.chats-list{
+    height: calc(100vh - 219px);
+    overflow-y: auto;
+}
+
+.text-window{
+    height: calc(100vh - 138px);
+    overflow-y: auto;
 }
 
 .user, .active-utent{
