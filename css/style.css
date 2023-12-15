@@ -121,6 +121,7 @@ img{
     border-radius: 10px;
     margin: 10px 0;
     position: relative;
+    cursor: pointer;
 }
 
 .sent{
@@ -138,4 +139,10 @@ img{
     position: absolute;
     bottom: 2px;
     right: 5px;
+}
+
+.delete-button{
+    position: absolute;
+    bottom: 5px;
+    left: 93%;
 }
