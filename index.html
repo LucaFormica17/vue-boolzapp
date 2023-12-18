@@ -38,12 +38,12 @@
                             <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat" v-model="search" @keyup="searchChat()">
                         </div>
                         <div class="chats-list">
-                            <div class="chat" v-show="utent.visible" v-for="utent, index in contacts" :key="index">
-                                <div class="active-avatar" @click="clickChat(index)">
+                            <div class="chat" v-show="utent.visible" v-for="utent, index in contacts" :key="index"  @click="clickChat(index)">
+                                <div class="active-avatar">
                                     <img :src="utent.avatar" alt="utent">
                                     <div class="info-utent ms-1">
                                         <p class="mb-0">{{utent.name}}</p>
-                                        <p class="text-secondary fs-10 mb-0">{{utent.messages[utent.messages.length - 1].message}}</p>
+                                        <p class="text-secondary fs-10 mb-0">{{ utent.messages[utent.messages.length - 1].message }}</p>
                                     </div>
                                 </div>
                                 <p class="text-secondary fs-10">{{utent.messages[utent.messages.length - 1].date}}</p>
@@ -56,33 +56,40 @@
                                 <img :src="contacts[view_utent].avatar" alt="utent">
                                 <div class="info-utent">
                                     <p class="mb-0">{{contacts[view_utent].name}}</p>
-                                    <p class="text-secondary fs-10 mb-0">Ultimo accesso: {{contacts[view_utent].messages[contacts[view_utent].messages.length-1].date}}</p>
+                                    <p class="text-secondary fs-10 mb-0">{{online}}</p>
                                 </div>
                             </div>
                             <div class="items">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                                 <i class="fa-solid fa-paperclip"></i>
-                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                                
+                                <div class="dropdown">
+                                    <button class="btn btn-sm border-0 f-btn p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                    <ul class="dropdown-menu">
+                                      <li @click="newChat()"><a class="dropdown-item" href="#">Add new chat</a></li>
+                                      <li @click="deleteAllChat(index)"><a class="dropdown-item" href="#">Delete chat</a></li>
+                                      <li @click="deleteContact(index)"><a class="dropdown-item" href="#">Delete contact</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         <div class="text-window p-5">
-                            <div class="text-container" :class="utent.status === 'received' ? 'received' : 'sent'" v-for="utent, index in contacts[view_utent].messages" :key="index" @mouseover="visibleDropdown(index)" @mouseleave="hiddenDropdown(index)">
+                            <div class="text-container" :class="utent.status === 'received' ? 'received' : 'send'" v-for="utent, index in contacts[view_utent].messages" :key="index" @mouseover="visibleDropdown(index)" @mouseleave="hiddenDropdown(index)" v-show="utent.message != ''">
                                 <p class="m-1">{{utent.message}}</p>
                                 <span class="mex-date">{{utent.date}}</span>
-
                                 <div class="dropdown">
                                     <button class="btn btn-sm border-0 dropdown-toggle delete-button" :class="utent.show === false ? 'd-none' : ''" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
                                     <ul class="dropdown-menu">
                                       <li><a class="dropdown-item" href="#">Info message</a></li>
                                       <li @click="deleteMessage(index)"><a class="dropdown-item" href="#">Delete message</a></li>
                                     </ul>
-                                  </div>
+                                </div>
                             </div>
                         </div>
                         <div class="input-container">
                             <i class="fa-regular fa-face-smile"></i>
                             <input type="text" class="form-control" placeholder="Send a message" v-model="add_message" @keyup.enter="sendMessage()" @keyup.enter="receivedMessage()">
-                            <i class="fa-solid fa-microphone"></i>
+                            <i :class="add_message === '' ? 'fa-solid fa-microphone' : 'fa-solid fa-paper-plane'" @click="sendMessage()"></i>
                         </div>
                     </div>
                 </div>

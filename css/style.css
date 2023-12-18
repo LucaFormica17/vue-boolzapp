@@ -65,9 +65,11 @@ img{
 
 .items{
     padding-right: 5px;
+    display: flex;
+    align-items: center;
 }
 
-.items > i{
+.items > i, .f-btn{
     color: gray;
     font-size: 20px;
     margin: 10px;
@@ -76,7 +78,6 @@ img{
 .active-avatar{
     display: flex;
     margin: 5px;
-    cursor: pointer;
 }
 
 .last-connection{
@@ -103,6 +104,7 @@ img{
     justify-content: space-between;
     padding: 5px 15px;
     border-bottom: 1px solid rgb(239, 238, 238);
+    cursor: pointer;
 }
 
 .input-container{
@@ -134,13 +136,17 @@ img{
     cursor: pointer;
 }
 
-.sent{
+.send{
     background-color: rgba(213,249,186,255);
 }
 
 .received{
     background-color: white;
     align-self: self-start;
+}
+
+.hidden{
+    display: none;
 }
 
 .mex-date{

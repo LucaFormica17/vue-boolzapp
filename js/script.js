@@ -1,13 +1,14 @@
 const dt = luxon.DateTime;
 
 const {createApp} = Vue;
-
 createApp({
     data(){
         return{
             view_utent: 0,
             add_message: '',
             search: '',
+            online: '',
+            new_name: '',
             contacts: [
                 {
                     name: 'Michele',
@@ -191,34 +192,49 @@ createApp({
                         }
                     ],
                 }
-            ]
-            
+            ],
+            answers: ['si','no','sono impeganto','ti chiamo dopo','ok','andiamo a cenare?','ti porto al mare'],
+            images: ['./img/avatar_1.jpg','./img/avatar_2.jpg','./img/avatar_3.jpg','./img/avatar_4.jpg','./img/avatar_5.jpg','./img/avatar_6.jpg','./img/avatar_7.jpg','./img/avatar_8.jpg','./img/avatar_io.jpg']
         }
     },
-    
+    created() {
+            this.online = `Ultimo accesso oggi alle ${this.contacts[this.view_utent].messages[this.contacts[this.view_utent].messages.length - 1].date}`;
+    },  
     methods:{
         clickChat(index){
             this.view_utent = index;
         },
         sendMessage(){
-            let obj = {
-                date: this.loc_Date(),
-                message: this.add_message,
-                status: 'send',
-                show: false
-            }
-            this.contacts[this.view_utent].messages.push(obj);
-                
-            let obj_receiv = setTimeout(() => {
+            if(this.add_message != ''){
                 let obj = {
                     date: this.loc_Date(),
-                    message: 'ok',
-                    status: 'received',
+                    message: this.add_message,
+                    status: 'send',
                     show: false
                 }
                 
                 this.contacts[this.view_utent].messages.push(obj);
-            }, 1000);
+
+                this.online = 'Sta scrivendo...';
+                    
+                let obj_receiv = setTimeout(() => {
+                    let obj = {
+                        date: this.loc_Date(),
+                        message: this.randomAnswers(),
+                        status: 'received',
+                        show: false
+                    };
+                    
+                    this.contacts[this.view_utent].messages.push(obj);
+
+                    this.online = 'Online'
+                }, 1000);
+
+                setTimeout(() =>{
+                    this.online = `Ultimo accesso oggi alle ${this.contacts[this.view_utent].messages[this.contacts[this.view_utent].messages.length-1].date}`;
+                }, 3000 )
+            }
+            this.add_message = '';
         },
         searchChat(){
             this.contacts.forEach(element => {
@@ -244,6 +260,42 @@ createApp({
         },
         hiddenDropdown(index){
             this.contacts[this.view_utent].messages[index].show = false;
+        },
+        randomAnswers(){
+            let randomNum = Math.floor(Math.random() * 7);
+            let random_answer = this.answers[randomNum];
+            return random_answer;
+        },
+        randomImage(){
+            let randomNum = Math.floor(Math.random() * 9);
+            let random_img = this.images[randomNum];
+            return random_img;
+        },
+        newChat(){
+            this.new_name = prompt('Inserisci nome contatto')
+            let obj = {
+                name: this.new_name,
+                avatar: this.randomImage(),
+                visible: true,
+                messages: [
+                    {
+                        date: this.loc_Date(),
+                        message: '',
+                        status: '',
+                        show: false
+                    }
+                ]
+            }
+            this.contacts.push(obj);
+        },
+        deleteAllChat(index){
+            this.contacts[this.view_utent].messages.splice(index);
+        },
+        deleteContact(index){
+            console.log(this.contacts[this.view_utent]);
+            this.contacts.splice(index,1);
         }
     }
 }).mount('#app');
+
+
