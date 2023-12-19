@@ -4,6 +4,7 @@ const {createApp} = Vue;
 createApp({
     data(){
         return{
+            isDarkMode: false,
             view_utent: 0,
             add_message: '',
             search: '',
@@ -198,6 +199,8 @@ createApp({
         }
     },
     created() {
+            let hello = alert('Benvenuto in Boolzapp! Seleziona una contatto per iniziare una chat!')
+
             this.online = `Ultimo accesso oggi alle ${this.contacts[this.view_utent].messages[this.contacts[this.view_utent].messages.length - 1].date}`;
     },  
     methods:{
@@ -215,6 +218,9 @@ createApp({
                 
                 this.contacts[this.view_utent].messages.push(obj);
 
+                const autoscroll = this.$refs.scrollDiv;
+                autoscroll.scrollTop = autoscroll.scrollHeight;
+
                 this.online = 'Sta scrivendo...';
                     
                 let obj_receiv = setTimeout(() => {
@@ -224,17 +230,25 @@ createApp({
                         status: 'received',
                         show: false
                     };
+
+                    
                     
                     this.contacts[this.view_utent].messages.push(obj);
 
                     this.online = 'Online'
+
+                    const autoscroll = this.$refs.scrollDiv;
+                    autoscroll.scrollTop = autoscroll.scrollHeight;
                 }, 1000);
 
                 setTimeout(() =>{
                     this.online = `Ultimo accesso oggi alle ${this.contacts[this.view_utent].messages[this.contacts[this.view_utent].messages.length-1].date}`;
+                    
                 }, 3000 )
             }
             this.add_message = '';
+
+            
         },
         searchChat(){
             this.contacts.forEach(element => {
@@ -294,6 +308,10 @@ createApp({
         deleteContact(index){
             console.log(this.contacts[this.view_utent]);
             this.contacts.splice(index,1);
+        },
+        dark_mode(){
+            this.isDarkMode = !this.isDarkMode;
+            
         }
     }
 }).mount('#app');

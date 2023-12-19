@@ -13,7 +13,7 @@
             <main>
                 <div class="dash-container">
                     <div class="list-container">
-                        <div class="user">
+                        <div class="user" :class="{ darkMode: isDarkMode }">
                             <div class="avatar-io">
                                 <img src="./img/avatar_io.jpg" alt="avatar_io">
                                 <span>Sofia</span>
@@ -24,7 +24,7 @@
                                 <i class="fa-solid fa-ellipsis-vertical"></i>
                             </div>
                         </div>
-                        <div class="notification">
+                        <div class="notification" :class="{ darkMode: isDarkMode }">
                             <div class="bell-container">
                                 <i class="fa-solid fa-bell-slash" style="color: rgba(142,218,252,255);"></i>
                             </div>
@@ -37,7 +37,7 @@
                             <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
                             <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat" v-model="search" @keyup="searchChat()">
                         </div>
-                        <div class="chats-list">
+                        <div class="chats-list" :class="{ darkMode: isDarkMode }">
                             <div class="chat" v-show="utent.visible" v-for="utent, index in contacts" :key="index"  @click="clickChat(index)">
                                 <div class="active-avatar">
                                     <img :src="utent.avatar" alt="utent">
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="chat-container">
-                        <div class="active-utent">
+                        <div class="active-utent" :class="{ darkMode: isDarkMode }">
                             <div class="active-avatar">
                                 <img :src="contacts[view_utent].avatar" alt="utent">
                                 <div class="info-utent">
@@ -60,6 +60,10 @@
                                 </div>
                             </div>
                             <div class="items">
+                                <div class="dropdown">
+                                    <button class="btn btn-sm border-0 f-btn p-0" @click="dark_mode()"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                </div>
+
                                 <i class="fa-solid fa-magnifying-glass"></i>
                                 <i class="fa-solid fa-paperclip"></i>
                                 
@@ -73,7 +77,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="text-window p-5">
+                        <div class="text-window p-5" ref="scrollDiv">
                             <div class="text-container" :class="utent.status === 'received' ? 'received' : 'send'" v-for="utent, index in contacts[view_utent].messages" :key="index" @mouseover="visibleDropdown(index)" @mouseleave="hiddenDropdown(index)" v-show="utent.message != ''">
                                 <p class="m-1">{{utent.message}}</p>
                                 <span class="mex-date">{{utent.date}}</span>
@@ -86,7 +90,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="input-container">
+                        <div class="input-container" :class="{ darkMode: isDarkMode }">
                             <i class="fa-regular fa-face-smile"></i>
                             <input type="text" class="form-control" placeholder="Send a message" v-model="add_message" @keyup.enter="sendMessage()" @keyup.enter="receivedMessage()">
                             <i :class="add_message === '' ? 'fa-solid fa-microphone' : 'fa-solid fa-paper-plane'" @click="sendMessage()"></i>

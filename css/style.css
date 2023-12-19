@@ -162,3 +162,8 @@ img{
     bottom: 5px;
     left: 93%;
 }
+
+.darkMode{
+    background-color: rgba(14, 14, 14, 0.848);
+    color: white;
+}

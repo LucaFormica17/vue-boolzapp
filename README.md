@@ -33,8 +33,8 @@ BONUS:
 4 - Implementare le emoji
 5(√) - Cliccando sui tre pallini, fare una dropdown dove c'è un pulsante che ti permette di cancellare tutti i messaggi e/o un pulsante che ti permette di cancellare il contatto
 6√ - Aggiungere un pulsante che ti permette di aggiungere un contatto alla lista
-7 - Quando invii i messaggi "lo schermo" rimane fisso. Far si che ci sia lo scroll automatico all'ultimo messaggio ricevuto (direi anche quando si clicca su una conversazione). //window.top e scrolltop(che si usa su textcontent)
-8 - Visualizzare un messaggio di benvenuto quando si atterra la prima volta nell'app e che invita a selezionare un contatto
+7√ - Quando invii i messaggi "lo schermo" rimane fisso. Far si che ci sia lo scroll automatico all'ultimo messaggio ricevuto (direi anche quando si clicca su una conversazione). //window.top e scrolltop(che si usa su textcontent)
+8√ - Visualizzare un messaggio di benvenuto quando si atterra la prima volta nell'app e che invita a selezionare un contatto
 9 - Rendere l'app responsive
 10 - Aggiungere un'icona per cambiare modalità da light a dark e viceversa
 
